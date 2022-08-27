@@ -6,7 +6,7 @@ as FDS ASYA PHILIPPINES INC. standard format.
 #******************************************#
 
 1.  Download the template by using either:
-        - git clone https://<yourToken>@<templateGitLink>
+        - git clone https://github.com/FDSAP-Git-Org/Go_Template.git
         or
         - Download the repository at Github
 2.  Place the template in your GOROOT
