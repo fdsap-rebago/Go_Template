@@ -1,11 +1,11 @@
-package private_route
+package routers
 
 import (
-	controller "Template/controllers/private_controller"
 	"Template/middleware"
 	"time"
 
 	fiberUtils "Template/middleware/go-utils/fiber"
+	"Template/struct/privates"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -24,6 +24,8 @@ func SetupPrivateRoutes(app *fiber.App) {
 	apiEndpoint := app.Group("/api")
 	publicEndpoint := apiEndpoint.Group("/private")
 	v1Endpoint := publicEndpoint.Group("/v1")
-	v1Endpoint.Get("/", controller.CheckServiceHealth)
+
+	// Service health check
+	v1Endpoint.Get("/", privates.CheckServiceHealth)
 
 }

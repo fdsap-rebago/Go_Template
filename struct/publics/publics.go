@@ -1,10 +1,10 @@
-package public_controller
+package publics
 
 import (
-	"github.com/gofiber/fiber/v2"
+	"Template/struct/errors"
+	"Template/struct/response"
 
-	"Template/models/errors"
-	"Template/models/response"
+	"github.com/gofiber/fiber/v2"
 )
 
 func checkHealth() response.ResponseModel {

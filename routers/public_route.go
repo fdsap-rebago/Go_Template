@@ -1,10 +1,16 @@
-package public_route
+package routers
 
 import (
-	controller "Template/controllers/public_controller"
+	"Template/struct/errors"
+	"Template/struct/publics"
+	"fmt"
 
 	"github.com/gofiber/fiber/v2"
 )
+
+func try() {
+	fmt.Println(errors.ErrorModel{})
+}
 
 func SetupPublicRoutes(app *fiber.App) {
 
@@ -14,5 +20,5 @@ func SetupPublicRoutes(app *fiber.App) {
 	v1Endpoint := publicEndpoint.Group("/v1")
 
 	// Service health check
-	v1Endpoint.Get("/", controller.CheckServiceHealth)
+	v1Endpoint.Get("/", publics.CheckServiceHealth)
 }

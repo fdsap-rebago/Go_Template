@@ -2,8 +2,7 @@ package main
 
 import (
 	"Template/middleware"
-	"Template/routers/private_route"
-	"Template/routers/public_route"
+	routers "Template/routers"
 	"fmt"
 	"log"
 
@@ -30,8 +29,8 @@ func main() {
 	app.Use(logger.New())
 
 	// Declare & initialize routes
-	public_route.SetupPublicRoutes(app)
-	private_route.SetupPrivateRoutes(app)
+	routers.SetupPublicRoutes(app)
+	routers.SetupPrivateRoutes(app)
 
 	// Serve the application
 	if middleware.GetEnv("SSL") == "enabled" {

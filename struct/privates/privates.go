@@ -1,11 +1,11 @@
-package private_controller
+package privates
 
 import (
 	"github.com/gofiber/fiber/v2"
 
 	fiberUtils "Template/middleware/go-utils/fiber"
-	"Template/models/errors"
-	"Template/models/response"
+	"Template/struct/errors"
+	"Template/struct/response"
 )
 
 func checkHealth() response.ResponseModel {
