@@ -1,16 +1,10 @@
 package routers
 
 import (
-	"Template/struct/errors"
 	"Template/struct/publics"
-	"fmt"
 
 	"github.com/gofiber/fiber/v2"
 )
-
-func try() {
-	fmt.Println(errors.ErrorModel{})
-}
 
 func SetupPublicRoutes(app *fiber.App) {
 
