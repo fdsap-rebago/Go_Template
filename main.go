@@ -19,18 +19,41 @@ func main() {
 		UnescapePath: true,
 	})
 
+	// For GoRoutine implementation
+	// appb := fiber.New(fiber.Config{
+	// 	UnescapePath: true,
+	// })
+
 	// Configure application CORS
 	app.Use(cors.New(cors.Config{
 		AllowOrigins: "*",
 		AllowHeaders: "Origin, Content-Type, Accept, Authorization",
 	}))
 
+	// For GoRoutine implementation
+	// appb.Use(cors.New(cors.Config{
+	// 	AllowOrigins: "*",
+	// 	AllowHeaders: "Origin, Content-Type, Accept, Authorization",
+	// }))
+
 	// Declare & initialize logger
 	app.Use(logger.New())
+
+	// For GoRoutine implementation
+	// appb.Use(logger.New())
 
 	// Declare & initialize routes
 	routers.SetupPublicRoutes(app)
 	routers.SetupPrivateRoutes(app)
+
+	// For GoRoutine implementation
+	// routers.SetupPublicRoutesB(appb)
+	// go func() {
+	// 	err := appb.Listen(fmt.Sprintf(":8002"))
+	// 	if err != nil {
+	// 		log.Fatal(err.Error())
+	// 	}
+	// }()
 
 	// Serve the application
 	if middleware.GetEnv("SSL") == "enabled" {
