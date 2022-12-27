@@ -38,7 +38,7 @@ func SystemLoggerAPI(url string, body interface{}, class string, resp *http.Resp
 	InfoLogger.Println(class + ": BODY: " + strBody)
 	InfoLogger.Println(class + ": RESPONSE: " + strRet)
 	InfoLogger.Println(class + ": STATUS: " + strStatus)
-
+	file.Close()
 }
 
 func SystemLoggerErrorAPI(url string, body interface{}, class string, resp *http.Response, ret interface{}, ip string) {
@@ -63,7 +63,7 @@ func SystemLoggerErrorAPI(url string, body interface{}, class string, resp *http
 	InfoLogger.Println(class + ": BODY: " + strBody)
 	InfoLogger.Println(class + ": RESPONSE: " + strRet)
 	InfoLogger.Println(class + ": STATUS: " + strStatus)
-
+	file.Close()
 }
 
 func SystemLoggerDB(body interface{}, class string, status int, ret string, ip string) {
@@ -86,7 +86,7 @@ func SystemLoggerDB(body interface{}, class string, status int, ret string, ip s
 	InfoLogger.Println(class + ": BODY: " + strBody)
 	InfoLogger.Println(class + ": RESPONSE: " + strRet)
 	InfoLogger.Println(class + ": STATUS: " + strconv.Itoa(status))
-
+	file.Close()
 }
 
 func SystemLoggerErrorDB(body interface{}, class string, status int, ret string, ip string) {
@@ -109,7 +109,7 @@ func SystemLoggerErrorDB(body interface{}, class string, status int, ret string,
 	ErrorLogger.Println(class + ": BODY: " + strBody)
 	ErrorLogger.Println(class + ": RESPONSE: " + strRet)
 	ErrorLogger.Println(class + ": STATUS: " + strconv.Itoa(status))
-
+	file.Close()
 }
 
 func SystemLoggerError(class string, proccess string, errorData error) {
@@ -129,5 +129,5 @@ func SystemLoggerError(class string, proccess string, errorData error) {
 	ErrorLogger.Println(class + ": - - - - - - - - - - - - - - -")
 	ErrorLogger.Println(class + ": ERROR AT: " + proccess)
 	ErrorLogger.Println(class + ": ERROR: " + strError)
-
+	file.Close()
 }
