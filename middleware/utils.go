@@ -17,3 +17,13 @@ func GetEnv(key string) string {
 
 	return os.Getenv(key)
 }
+
+func GetSQLEnv(key string) string {
+	err := godotenv.Load(".env-SCRIPT")
+
+	if err != nil {
+		log.Fatalf("Error loading .env-SCRIPT file")
+	}
+
+	return os.Getenv(key)
+}
