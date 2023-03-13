@@ -1,17 +1,31 @@
 package main
 
 import (
-	"Template/middleware"
-	routers "Template/routers"
+	routers "Template/pkg/routers"
+	middleware "Template/pkg/utils"
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatal("Error Loading Env File: ", err)
+	}
+	envi := os.Getenv("ENVIRONMENT")
+
+	err = godotenv.Load(fmt.Sprintf(".env-%v", envi)) //
+	if err != nil {
+		log.Fatal("Error Loading Env File: ", err)
+	}
+
 	// Initialize DB here
 
 	// Declare & initialize fiber
@@ -55,6 +69,7 @@ func main() {
 	// 	}
 	// }()
 
+	fmt.Println("Port: ", middleware.GetEnv("PORT"))
 	// Serve the application
 	if middleware.GetEnv("SSL") == "enabled" {
 		log.Fatal(app.ListenTLS(
