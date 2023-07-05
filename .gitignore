@@ -1,9 +1,12 @@
 #IGNORED FILES
 nohup.out
 Makefile
+kill
+kill.sh
+/sh
 Template
-.env
-.env-DEV
-.env-PROD
-.env-SIT
-.env-UAT
+/.env
+/.env-DEV
+/.env-PROD
+/.env-SIT
+/.env-UAT
