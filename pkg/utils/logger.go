@@ -131,3 +131,23 @@ func SystemLoggerError(class string, proccess string, errorData error) {
 	ErrorLogger.Println(class + ": ERROR: " + strError)
 	file.Close()
 }
+
+func SystemLogger(class string, data string, username string) {
+
+	currentTime := time.Now()
+	file, err := os.OpenFile("logs/"+currentTime.Format("01022006")+"_SYSTEM_ERROR.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	InfoLogger = log.New(file, "INFO: ", log.Ldate|log.Ltime)
+	Separator = log.New(file, "", log.Ldate|log.Ltime)
+
+	strError := fmt.Sprintf("%#v", username)
+
+	Separator.Println("")
+	InfoLogger.Println(class + ": - - - - - - - - - - - - - - -")
+	InfoLogger.Println(class + ": UPDATED RECORD is_active column: value(" + data + ")")
+	InfoLogger.Println(class + ": ERROR: " + strError)
+	file.Close()
+}
