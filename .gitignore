@@ -1,0 +1,9 @@
+#IGNORED FILES
+nohup.out
+Makefile
+Template
+.env
+.env-DEV
+.env-PROD
+.env-SIT
+.env-UAT
