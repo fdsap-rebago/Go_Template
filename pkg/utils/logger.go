@@ -16,10 +16,23 @@ var (
 	Separator     *log.Logger
 )
 
-func SystemLoggerAPI(url string, body interface{}, class string, resp *http.Response, ret interface{}, ip string) {
+func CreateDirectory(path string) error {
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		err := os.MkdirAll(path, 0755)
+		if err != nil {
+			return err
+		}
+		return nil
+	} else {
+		return err
+	}
+}
 
+func SystemLoggerAPI(url string, body interface{}, class string, resp *http.Response, ret interface{}, ip string) {
 	currentTime := time.Now()
-	file, err := os.OpenFile("logs/"+currentTime.Format("01022006")+"_API.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	folderName := "./logs/systemLogger/" + currentTime.Format("01-January")
+	CreateDirectory(folderName)
+	file, err := os.OpenFile(folderName+"/SystemLoggerAPI-"+currentTime.Format("01022006")+".log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -42,9 +55,10 @@ func SystemLoggerAPI(url string, body interface{}, class string, resp *http.Resp
 }
 
 func SystemLoggerErrorAPI(url string, body interface{}, class string, resp *http.Response, ret interface{}, ip string) {
-
 	currentTime := time.Now()
-	file, err := os.OpenFile("logs/"+currentTime.Format("01022006")+"_API.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	folderName := "./logs/systemLoggerError/" + currentTime.Format("01-January")
+	CreateDirectory(folderName)
+	file, err := os.OpenFile(folderName+"/SystemLoggerError-"+currentTime.Format("01022006")+".log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -67,9 +81,10 @@ func SystemLoggerErrorAPI(url string, body interface{}, class string, resp *http
 }
 
 func SystemLoggerDB(body interface{}, class string, status int, ret string, ip string) {
-
 	currentTime := time.Now()
-	file, err := os.OpenFile("logs/"+currentTime.Format("01022006")+"_DB.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	folderName := "./logs/systemLoggerDB/" + currentTime.Format("01-January")
+	CreateDirectory(folderName)
+	file, err := os.OpenFile(folderName+"/SystemLoggerDB-"+currentTime.Format("01022006")+".log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -90,9 +105,10 @@ func SystemLoggerDB(body interface{}, class string, status int, ret string, ip s
 }
 
 func SystemLoggerErrorDB(body interface{}, class string, status int, ret string, ip string) {
-
 	currentTime := time.Now()
-	file, err := os.OpenFile("logs/"+currentTime.Format("01022006")+"_DB.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	folderName := "./logs/systemLoggerErrorDB/" + currentTime.Format("01-January")
+	CreateDirectory(folderName)
+	file, err := os.OpenFile(folderName+"/SystemLoggerErrorDB-"+currentTime.Format("01022006")+".log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -113,9 +129,10 @@ func SystemLoggerErrorDB(body interface{}, class string, status int, ret string,
 }
 
 func SystemLoggerError(class string, proccess string, errorData error) {
-
 	currentTime := time.Now()
-	file, err := os.OpenFile("logs/"+currentTime.Format("01022006")+"_SYSTEM_ERROR.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	folderName := "./logs/systemLoggerError/" + currentTime.Format("01-January")
+	CreateDirectory(folderName)
+	file, err := os.OpenFile(folderName+"/SystemLoggerError-"+currentTime.Format("01022006")+".log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -133,9 +150,10 @@ func SystemLoggerError(class string, proccess string, errorData error) {
 }
 
 func SystemLogger(class string, data string, username string) {
-
 	currentTime := time.Now()
-	file, err := os.OpenFile("logs/"+currentTime.Format("01022006")+"_SYSTEM_ERROR.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	folderName := "./logs/systemLogger/" + currentTime.Format("01-January")
+	CreateDirectory(folderName)
+	file, err := os.OpenFile(folderName+"/SystemLogger-"+currentTime.Format("01022006")+".log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}
